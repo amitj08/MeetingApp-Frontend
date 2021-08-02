@@ -8,12 +8,12 @@ function register( registerData ) {
     // if you use fetch then use response.json()
     // if you use axios then use response.data
     return axios.post(
-        `${API_BASE_URL}/meetings`,
+        `${API_BASE_URL}/teams`,
          registerData,
         {
             headers: {
                 'Content-Type': 'application/json',
-                 Authorization: `${getToken()}`,
+                Authorization: `${getToken()}`,
             },
         },
     )
@@ -35,27 +35,22 @@ function init() {
         // we shall submit via an Ajax POST request
         event.preventDefault();
 
+        const membersEl = document.querySelector( '#members' );
         const nameEl = document.querySelector( '#name' );
-        const dateEl = document.querySelector( '#date' );
-        const startTimeEl = document.querySelector( '#meeting_start_time' );
-        const endTimeEl = document.querySelector( '#meeting_end_time' );
+        const shortNameEl = document.querySelector( '#shortname' );
         const descriptionEl = document.querySelector( '#description' );
-        const attendeesEl = document.querySelector( '#emailid_of_attendees' );
 
         const name = nameEl.value;
-        const date = dateEl.value;
+        const shortName = shortNameEl.value;
         const description = descriptionEl.value;
-        const attendees= attendeesEl.value;
+        const members= membersEl.value;
 
-        const startTime = document.getElementById("meeting-start-time").value;
-        const endTime = document.getElementById("meeting-end-time").value;
-        const attendeesArray = attendees.split(',');
+        const membersArray = members.split(',');
 
         //console.log(email, name,password);
-        const dataToPost= { name, date, startTime, description , attendeesArray };
-        register( dataToPost )
+        register( { name, shortName, description , membersArray } )
             .then( () => {
-                window.alert("Successfully Added Meeting");
+                window.alert("Successfully Added Team");
             } )
             .catch( ( error ) => {
                 alert( error.message );

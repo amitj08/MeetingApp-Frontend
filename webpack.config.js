@@ -9,10 +9,10 @@ module.exports = {
         "index": "./public/js/index.js",
         "login": "./public/js/login.js",
         "register": "./public/js/register.js",
-        "calendar": "./public/js/calendar.js",
         "search-meeting": "./public/js/search-meeting.js",
         "add-meeting": "./public/js/add-meeting.js",
-        "teams": "./public/js/teams.js"
+        "teams": "./public/js/teams.js",
+        "add-teams": "./public/js/add-teams.js"
     },
     output: {
         path: path.join( __dirname, "dist" ),
@@ -41,13 +41,6 @@ module.exports = {
             template: path.join( __dirname, 'public', 'index.html' ),
             inject: true,
             chunks: [ 'index' ]
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Calendar List',
-            filename: './calendar.html',
-            template: path.join( __dirname, 'public', 'calendar.html' ),
-            inject: true,
-            chunks: [ 'calendar' ]
         }),
         new HtmlWebpackPlugin({
             title: 'Meeting',
@@ -83,6 +76,14 @@ module.exports = {
             template: path.join( __dirname, 'public', 'register.html' ),
             inject: true,
             chunks: [ 'register' ]
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Add Team',
+            filename: './add-teams.html',
+            template: path.join( __dirname, 'public', 'add-teams.html' ),
+            inject: true,
+            chunks: [ 'add-teams' ]
         })
+
     ]
 }

@@ -11,9 +11,9 @@
         <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="container">
                 <ul class="nav navbar-nav mr-auto">
-                    
+    
                     <li class="nav-item">
-                        <a class="nav-link" href="/calendar">
+                        <a class="nav-link" href="/">
                             Calendar <span class="visually-hidden">(current)</span>
                         </a>
                     </li>
@@ -24,7 +24,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/teams">
+                        <a class="nav-link active" href="/teams">
                             Teams
                         </a>
                     </li>
@@ -46,57 +46,43 @@
 
         <main class="container my-3">
             <section class="container my-3">
-                <h1 class="pb-3 mb-3 border-bottom">Meetings</h1>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/search-meeting">Filter / Search Meetings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/add-meeting">Add a Meeting</a>
-                    </li>
-                </ul>
+                <h1 class="pb-3 mb-3 border-bottom">Teams</h1>
+                
             </section>
 
             <section>  
                 <form class="bg-info p-3 mt-2 rounded">
-                    <h2 class="pb-3 mb-1 mt-3 text-white border-bottom">Add a new meeting</h2>
-                    <form action="/meetings" method="get" id="add-meeting-form">
+                    <h2 class="pb-3 mb-1 mt-3 text-white border-bottom">Add a new team</h2>
+                    <form action="" method="post" id="add-team-form">
+                        
                         <div class="form-group mb-3">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name"  value= "" /> 
                         </div>
+
+                        <div class="form-group mb-3">
+                            <label for="shortname">Short name</label>
+                            <input type="text" class="form-control" id="shortname"  value= "" placeholder="Starts with @"/> 
+                        </div>
+                        
                         
                         <div class="form-group mb-3">
-                            <label for="date">Date</label>
-                            <input type="date" class="form-control" id="date"  value= "" /> 
-                        </div>
-                        
-                        <div class="form-group mb-3 ">
-                            <label class="mb-1" for="formGroupStartTime">Start Time </label>
-                            <input class="form-control" type="time" name="meeting-start-time" id="meeting_start_time">
-                        </div>
-
-                        <div class="form-group mb-3 ">
-                            <label class="mb-1" for="formGroupEndTime">End Time </label>
-                            <input class="form-control" type="time" name="meeting-end-time" id="meeting_end_time">
+                            <label for="search-keywords" >Description</label>
+                            <textarea class="form-control" name="search-keywords" id="description" value=""></textarea>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="description" >Description</label>
-                            <textarea class="form-control" name="description" id="description" value=""></textarea>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="attendeesEmail" >Email IDs of attendees</label>
-                            <textarea class="form-control" name="attendeesEmail" id="emailid_of_attendees" placeholder="Seperate email IDs with comma" value=""></textarea>
+                            <label for="members-mail" >Email IDs of members</label>
+                            <textarea class="form-control" name="members-email" id="members" placeholder="Seperate email ids with comma" value=""></textarea>
                         </div>
                         
-                        <button type="submit"  class="btn-primary" id="add-btn">Add Meeting</button>
+                        <button type="submit"  class="btn-primary" id="add-btn">Add Team</button>
                     </form>
                 </form>
 
             </section>
         </main>
+
 
     </body>
 </html>

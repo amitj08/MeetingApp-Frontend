@@ -47,9 +47,14 @@ function getToken() {
     return localStorage.getItem( TOKEN );
 }
 
+function getUser() {
+    return localStorage.getItem( EMAIL );
+}
+
 export {
     // eslint-disable-next-line
     login,
     logout,
-    getToken
+    getToken,
+    getUser
 };

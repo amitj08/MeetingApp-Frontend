@@ -4,21 +4,20 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
+        <title>Calendar</title>
+        <!-- Bootstrap CSS 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        -->
     </head>
     <body>
         <!-- b4-navbar-minimal-ul -->
         <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="container">
                 <ul class="nav navbar-nav mr-auto">
+                    
                     <li class="nav-item">
-                        <a class="nav-link active" href="/login">
-                            Home <span class="visually-hidden">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/calendar">
-                            Calendar
+                        <a class="nav-link active" href="/">
+                            Calendar <span class="visually-hidden">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -34,6 +33,11 @@
                 </ul>
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link" href="#" id="current_user">
+                            
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/login" id="logout-link">
                             Logout
                         </a>
@@ -42,18 +46,39 @@
             </div>
         </nav>
 
-        <main>
-            <section class="container my-4">
-                <div class="card bg-light p-5">
-                    <h1>Meeting App</h1>
-                    <p>
-                        The Workshops application serves details of (fictitious) technical workshops happening in various cities. Every workshop has a broad topic (eg. JavaScript), and a workshop has many sessions (each session covers a sub-topic, eg. Closures in JavaScript).
-                    </p>
-                    <p>
-                        You can view a list of workshops, details of every workshop, sessions in a workshop, and also add a new session for a workshop.
-                    </p>
+        <main id="main-content1" >
+            <div class="container my-3 ">
+                <h1 class="margin-top-2 margin-bottom-1 hr">Calendar</h1>
+                
+                <div class="d-flex justify-content-space-between margin-top-1">
+                    <div>
+                        <h2 id="cal-date-text"></h2>
+                    </div>
+                    <div >
+                        <form method="post" action="/calendar">
+                        <label for="cal-datepicker" class="sr-only">Select Date to check meetings on that day</label>
+                        <input type="date" class="cal-datepicker" id="cal-datepicker"  value= "" />
+                        </form>
+                    </div>
                 </div>
-            </section>
+                <hr />
+                <div>
+                    <div class="day-name" id="day-name"></div>
+                </div>
+
+            </div>
+                
+                
+            <section class="container my-4">
+                <div class="d-flex justify-content-between align-items-center">
+
+                <div class="row" id="meetings-list">
+                    
+                </div>
+            </section>    
+             
+
         </main>
+
     </body>
 </html>
