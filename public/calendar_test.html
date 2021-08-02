@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="This is Our meeting application where you can we view your meetings present on particular date">
+        <title>Meetings Application | Calendar</title>
+        
+      
+        <!-- <link rel="stylesheet" href="../styles/css/reset.css"> -->
+        
+        <!-- <link rel="stylesheet" href="../styles/css/utils.css">
+        <link rel="stylesheet" href="../styles/css/nav.css">
+        <link rel="stylesheet" href="../styles/css/notification.css">
+        <link rel="stylesheet" href="../styles/css/calendar.css"> -->
+
+    </head>
+
+    <body>
+        <nav class="navbar-main ">
+
+            <a href="#main-content1" class="sr-only focusable">
+                Skip to content
+            </a>
+
+            <!--Desktop View-->
+            <div class="container nav-wrapper nav-desktop">
+                <div >
+                    <ul class=" nav-list ">
+                        <li>
+                            <a href="calendar.html" class="link-active">Calendar</a>
+                        </li>
+                        <li>
+                            <a href="../meetings/add-meeting/add-meeting.html">Meetings</a>
+                        </li>
+                        <li>
+                            <a href="../teams/teams.html">Teams</a>
+                        </li>
+                    </ul>
+                </div>
+            
+
+                <div class="nav-list ">
+                    <ul>
+                        <li>Hello</li>
+                        <li class="doc-color text-bold nav-user-mail"> </li>
+                        <li><a href="../user/login/login.html" class="logout">Logout</a></li>
+                    </ul>
+                </div>
+               
+            </div>
+          
+            <!--End of Desktop View-->
+
+            <!--Nav Mobile view-->
+
+            <div class="container nav-wrapper nav-mobile">
+                    <div class="d-flex justify-content-space-between ">
+                        <p>My Meetings</p>
+                        <button  class="hamburger open-nav" ><i class="fas fa-bars"></i></button>   
+                    </div>
+                    
+                    <div  class="sidenav">
+                        <ul class="mobile-nav-list">
+                            <li>
+                                <a href="#" class=" close-nav-btn">&times;</a>
+                            </li>
+                            <li>
+                                <a href="calendar.html" class="link-active">Calendar</a>
+                            </li>
+                            <li>
+                                <a href="../meetings/add-meeting/add-meeting.html">Meetings</a>
+                            </li>
+                            <li>
+                                <a href="../teams/teams.html">Teams</a>
+                            </li>
+                            <li>
+                                <a href="../user/login/login.html" class="logout">Logout</a>
+                            </li>
+                        </ul>
+    
+                    </div>
+                    
+            </div> 
+            <!--End of Mobile Nav-->
+        </nav>
+
+        <main id="main-content1" >
+        
+            <div class=" container ">
+                
+                <div class="margin-top-2 margin-bottom-1 hr">
+                    <h1>Calendar</h1>
+                </div>
+                
+                <div class="d-flex justify-content-space-between margin-top-1">
+                    <div>
+                        <h2 id="cal-date-text"></h2>
+                    </div>
+                    <div >
+                        <form method="post" action="https://mymeetingsapp.herokuapp.com/api/calendar">
+                        <label for="cal-datepicker" class="sr-only">Select Date to check meetings on that day</label>
+                        <input type="date" class="cal-datepicker" id="cal-datepicker"  value= "" />
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="day-name" id="day-name"></div>
+                </div>
+
+            </div>
+
+            <!--Calendar Start-->
+            <section class="calendar-container margin-top-1" id="calendar-container">
+                <div>
+     
+                    <div class="calendar-align">
+                        <div>0</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>1</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>2</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>3</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>4</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>5</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>6</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>7</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>8</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>9</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>10</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>11</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>12</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>13</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>14</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>15</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>16</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>17</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>18</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>19</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>20</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>21</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>22</div>
+                        <div></div>
+                    </div>
+                    <div class="calendar-align">
+                        <div>23</div>
+                        <div></div>
+                    </div>
+
+                </div>
+                 
+                <div class="calendar-meeting-container"></div> 
+                
+        
+            </section>
+            <!--Calendar End-->   
+
+        </main>
+    
+   
+    <!-- <script src="../js/nav.js" type="module"></script> -->
+    <!-- <script src="calendar.js" type="module"></script> -->
+
+    </body>
+</html>
