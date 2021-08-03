@@ -5,6 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
+
+        <script>
+            if( !localStorage.getItem( 'token' ) ) {
+                window.location = '/login';
+            }
+        </script>
     </head>
     <body>
         <!-- b4-navbar-minimal-ul -->
@@ -82,7 +88,7 @@
             </section>
 
             <section>
-                <h2 class="pb-2 my-3 border-bottom">Meetings matching search criteria</h2>
+                <h2 class="pb-2 my-3 border-bottom">Meetings Matching Search Criteria</h2>
                
                 <div class="card p-3" id="search-results"></div>
                 <!-- fetch your search results from search-meeting.js and show here-->

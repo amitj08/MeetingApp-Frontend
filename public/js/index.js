@@ -76,7 +76,7 @@ function renderMeetings( meetings ) {
 
 async function init() {
     const user= getLoggedUserName();
-    document.getElementById('current_user').innerHTML= `Hi ${user}`;
+    document.getElementById('current_user').innerHTML= `Welcome <b>${user}</b>`;
     
     const findMeeting = document.getElementById( 'search-form' );
 

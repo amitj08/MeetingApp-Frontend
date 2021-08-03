@@ -5,6 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
+        <script>
+            if( !localStorage.getItem( 'token' ) ) {
+                window.location = '/login';
+            }
+        </script>
     </head>
     <body>
         <!-- b4-navbar-minimal-ul -->
@@ -46,24 +51,23 @@
         <main>
             <section class="container my-4">
                 <div class="card bg-light p-1">
-                    <h2>Teams</h2>
-                    <hr class="my-3" />
-                    <p>View and edit teams you are part of</p>
+                    <span class="text-center"><h2>Teams</h2> </span>
+                     
+                    
+
+                    <h5 align ="right">
+                    <a class="text-light bg-dark" style="text-align: right;" href="/add-teams">
+                        Create a New Team
+                    </a>
+                   </h5>
+
+                    
                 </div>
 
                 <div class="card p-3" id="search-results"></div> 
-                   
+
                 </hr>
 
-                <div class="col-12 col-md-4 d-flex mb-3">
-                    <div class="card p-3">
-                        <div class="card-body">
-                            <a class="nav-link" href="/add-teams">
-                                Create a team
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 
             </section>
         </main>

@@ -5,6 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calendar</title>
+
+        <script>
+            if( !localStorage.getItem( 'token' ) ) {
+                window.location = '/login';
+            }
+        </script>
+
         <!-- Bootstrap CSS 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         -->
@@ -54,10 +61,10 @@
                     <div>
                         <h2 id="cal-date-text"></h2>
                     </div>
-                    <div >
+                    <div>
                         <form method="get" action="" id="search-form">
-                        <label for="cal-datepicker" class="sr-only">Select Date to check meetings on that day</label>
-                        <input type="date" class="cal-datepicker" id="cal-date"  value= "" />
+                        <label for="cal-datepicker" class="sr-only"><i>Select date to check meetings on that day</i></label>
+                        <input type="date" aria-hidden="true" class="cal-datepicker" id="cal-date"  value= "" />
                         <button type="submit"  class="btn-primary" id="search-btn">Find</button>
                         </form>
                     </div>
