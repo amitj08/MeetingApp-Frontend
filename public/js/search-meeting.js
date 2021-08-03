@@ -49,7 +49,7 @@ async function removeSelf( mid ) {
 
 async function addAttendee( mid, attendeeToAdd ) {
     const response = await axios.patch(
-        `${API_BASE_URL}/meetings/${id}/${attendeeToAdd}`,
+        `${API_BASE_URL}/meetings/${mid}/${attendeeToAdd}`,
         null, // send data here or null if there is no data to send
         {
             params: {
@@ -65,39 +65,69 @@ async function addAttendee( mid, attendeeToAdd ) {
     return response.data.data;
 }
 
+function setupListeners( meetings ) {
+    const items1 = document.querySelectorAll( '.remove-self' );
+
+    items1.forEach( ( item, idx ) => {
+        item.addEventListener( 'click', function(event) {
+            event.preventDefault();
+            removeSelf( meetings[idx]._id ).then(() => {
+                alert("You have succesfully removed from the meeting");
+            });
+        })  
+        //alert( this.closest( '.workshop-item' ).getAttribute( 'data-idx' ) );
+        //item.querySelector( '.add-button' ).addEventListener( 'click', function() {
+        //    await addAttendee( meetings[idx].id );
+        //}) 
+
+    });
+
+    const items2 = document.querySelectorAll( '.add-member' );
+
+    items2.forEach( ( item, idx ) => {
+        item.addEventListener( 'click', function(event) {
+            event.preventDefault();
+            const email=document.querySelector('.new-member').value;
+            console.log(email);
+            addAttendee( meetings[idx]._id, email ).then(() => {
+                alert("You have succesfully added in the meeting");
+            });
+        })  
+        //alert( this.closest( '.workshop-item' ).getAttribute( 'data-idx' ) );
+        //item.querySelector( '.add-button' ).addEventListener( 'click', function() {
+        //    await addAttendee( meetings[idx].id );
+        //}) 
+
+    });   
+
+}
+
 
 function renderMeetings( meetings ) {
     const meetingsListEl = document.getElementById( 'search-results' );
 
-    meetings.forEach( ( meeting ) => {
-        meetingsListEl.innerHTML += `
-        <div class="col-12 col-md-4 d-flex mb-3">
-        <div class="card p-3">
+    meetingsListEl.innerHTML += meetings.map( meeting => (
+        `<div class="col-12 col-md-4 d-flex mb-3" "meeting-item">
+         <div class="card p-3">
             <div class="card-body">
                 <h5 class="card-title">${meeting.name}</h5>
                 <p class="card-text">${meeting.date}</p>
-                <a href="/meetings?id=${meeting._id}" data-id="${meeting._id}" class="btn btn-danger">Excuse yourself</a>
+                <button class="remove-self">Excuse yourself</button>
                 <hr class="my-3" />
                 <p id="meeting_attendees"><strong>Members: </strong>${meeting.attendees}</p>
                 <form class="row gy-2 gx-3 align-items-center">
                     <div class="col-auto">
-                        <label class="visually-hidden" for="select_member">Select Member</label>
-                        <select class="form-select" id="select_member" aria-label="Select Member">
-                            <option selected>Select member</option>
-                            <option value="1">m1@example.com</option>
-                            <option value="2">m2@example.com</option>
-                            <option value="3">m4@example.com</option>
-                        </select>
+                    <input type="text" class="new-member" placeholder="Enter attendee email" value= "" /> 
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-info text-white">Add</button>
+                        <button class="add-member">Add</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-        `;
-    } );
+        </div>`
+    )).join( '' );
+    setupListeners( meetings );
 }
 
 async function init() {
