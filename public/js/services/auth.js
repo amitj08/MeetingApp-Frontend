@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_BASE_URL, TOKEN, EMAIL } from '../constants';
+import { API_BASE_URL, TOKEN, EMAIL, NAME } from '../constants';
 
 /**
  * 
@@ -27,8 +27,10 @@ function login( credentials ) {
         .then( ( response ) => response.data )
         .then( ( data ) => {
             // store the token and other user details in local storage
-            localStorage.setItem( TOKEN, data.authToken );
-            localStorage.setItem( EMAIL, data.email );
+            localStorage.setItem( TOKEN, data.data.token );
+            localStorage.setItem( EMAIL, data.data.email );
+            localStorage.setItem( NAME, data.data.name );
+
 
             return data;
         } );

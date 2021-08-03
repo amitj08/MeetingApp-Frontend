@@ -47,8 +47,21 @@ function init() {
 
         const membersArray = members.split(',');
 
-        //console.log(email, name,password);
-        register( { name, shortName, description , membersArray } )
+        console.log(name);
+        console.log(shortName);
+        console.log(description);
+        console.log(membersArray);
+
+
+        const dataToPost= { 
+            "name": name, 
+            "shortName": shortName,
+            "description": description,
+            "members": membersArray
+         };
+
+
+        register( dataToPost )
             .then( () => {
                 window.alert("Successfully Added Team");
             } )

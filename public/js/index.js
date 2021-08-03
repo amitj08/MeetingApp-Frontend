@@ -6,6 +6,7 @@ import { getToken, getUser } from './services/auth';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
+/*
 const meeting1 = [
     {
         "attendees": [
@@ -28,6 +29,7 @@ const meeting1 = [
         }
     }
 ]
+*/
 
 async function fetchMeetingsByDate( meetingDate ) {
     // if you use fetch then use response.json()
@@ -71,18 +73,39 @@ function renderMeetings( meetings ) {
     } );
 }
 
+
 async function init() {
     const user= getUser();
-    document.getElementById('current_user').innerHTML= `"Hi"+${user}`;
-    try {
-        const date= new Date();
-        //const meetings = await fetchMeetingsByDate(date);
-        renderMeetings( meeting1 );
-    } catch ( error ) {
-        // eslint-disable-next-line
-        alert( error.message );
-    }
+    document.getElementById('current_user').innerHTML= `Hi+${user}`;
+    
+    const findMeeting = document.getElementById( 'search-form' );
+
+    /* eslint-disable-next-line */
+    findMeeting.addEventListener( 'submit', async function( event ) {
+        // this -> loginForm
+
+        // we shall submit via an Ajax POST request
+        event.preventDefault();
+
+        const dateEl = document.querySelector( '#cal-date' );
+        const date= dateEl.value;
+
+        console.log("Test");
+        console.log(date);
+
+        try {
+            //const date= new Date();
+            //const date= new Date("2020-09-19");
+            const meetings = await fetchMeetingsByDate(date);
+            renderMeetings( meetings );
+        } catch ( error ) {
+            // eslint-disable-next-line
+            alert( error.message );
+        } 
+    })
 }
+ 
 
 init();
+
 

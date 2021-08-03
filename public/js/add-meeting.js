@@ -3,6 +3,7 @@ import { getToken, getUser } from './services/auth';
 
 import axios from 'axios';
 import { API_BASE_URL } from './constants';
+//import { startsWith } from 'core-js/core/string';
 
 function register( registerData ) {
     // if you use fetch then use response.json()
@@ -19,14 +20,14 @@ function register( registerData ) {
     )
         .then( ( response ) => response.data )
         .then( ( data ) => {
-            console.log(data);
+            //console.log(data);
             return data;
         } );
 }
 
 
 function init() {
-    const registerForm = document.getElementById( 'add-team-form' );
+    const registerForm = document.getElementById( 'add-meeting-form' );
 
     /* eslint-disable-next-line */
     registerForm.addEventListener( 'submit', function( event ) {
@@ -47,12 +48,39 @@ function init() {
         const description = descriptionEl.value;
         const attendees= attendeesEl.value;
 
-        const startTime = document.getElementById("meeting-start-time").value;
-        const endTime = document.getElementById("meeting-end-time").value;
+        const startTime = startTimeEl.value;
+        const endTime = endTimeEl.value;
+        const startTimehr = parseInt(startTime.split(':')[0]);
+        const startTimemin = parseInt(startTime.split(':')[1]);
+        const endTimehr = parseInt(endTime.split(':')[0]);
+        const endTimemin = parseInt(endTime.split(':')[1]);
         const attendeesArray = attendees.split(',');
 
-        //console.log(email, name,password);
-        const dataToPost= { name, date, startTime, description , attendeesArray };
+        //console.log("Date "+date);
+        //console.log("starttime "+startTime);
+        //console.log("endTime "+endTime);
+        console.log("attendees ",attendeesArray);
+        //console.log("startTimehr "+ startTimehr);
+        //console.log("startTimemin "+ startTimemin);
+        console.log(`${getToken()}`);
+
+        
+        const dataToPost= { 
+            "name": name, 
+            "date": date, 
+            "description": description,
+            "startTime": {
+                hours: startTimehr,
+                minutes: startTimemin
+            },
+            "endTime": {
+                hours: endTimehr,
+                minutes: endTimemin
+            },
+            attendees: attendeesArray
+           
+         };
+      
         register( dataToPost )
             .then( () => {
                 window.alert("Successfully Added Meeting");

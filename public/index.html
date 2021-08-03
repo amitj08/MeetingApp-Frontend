@@ -55,9 +55,10 @@
                         <h2 id="cal-date-text"></h2>
                     </div>
                     <div >
-                        <form method="post" action="/calendar">
+                        <form method="get" action="" id="search-form">
                         <label for="cal-datepicker" class="sr-only">Select Date to check meetings on that day</label>
-                        <input type="date" class="cal-datepicker" id="cal-datepicker"  value= "" />
+                        <input type="date" class="cal-datepicker" id="cal-date"  value= "" />
+                        <button type="submit"  class="btn-primary" id="search-btn">Find</button>
                         </form>
                     </div>
                 </div>
