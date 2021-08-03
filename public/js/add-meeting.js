@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getToken, getUser } from './services/auth';
+import { getToken, getLoggedUserName, getUser } from './services/auth';
 
 import axios from 'axios';
 import { API_BASE_URL } from './constants';
@@ -27,6 +27,9 @@ function register( registerData ) {
 
 
 function init() {
+    const user= getLoggedUserName();
+    document.getElementById('current_user').innerHTML= `Hi ${user}`;
+
     const registerForm = document.getElementById( 'add-meeting-form' );
 
     /* eslint-disable-next-line */

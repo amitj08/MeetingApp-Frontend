@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { API_BASE_URL } from './constants';
-import { getToken, getUser } from './services/auth';
+import { getLoggedUserName, getToken, getUser } from './services/auth';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -75,8 +75,8 @@ function renderMeetings( meetings ) {
 
 
 async function init() {
-    const user= getUser();
-    document.getElementById('current_user').innerHTML= `Hi+${user}`;
+    const user= getLoggedUserName();
+    document.getElementById('current_user').innerHTML= `Hi ${user}`;
     
     const findMeeting = document.getElementById( 'search-form' );
 

@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import axios from 'axios';
 import { API_BASE_URL } from './constants';
-import { getToken , getUser} from './services/auth';
+import { getToken , getLoggedUserName} from './services/auth';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -57,7 +57,7 @@ async function addAttendee( mid, attendeeToAdd ) {
                 email: attendeeToAdd ,
             },
             headers: {
-                Authorization: getToken(),
+                Authorization: `${getToken()}`,
             },
         },
     );
@@ -75,10 +75,6 @@ function setupListeners( meetings ) {
                 alert("You have succesfully removed from the meeting");
             });
         })  
-        //alert( this.closest( '.workshop-item' ).getAttribute( 'data-idx' ) );
-        //item.querySelector( '.add-button' ).addEventListener( 'click', function() {
-        //    await addAttendee( meetings[idx].id );
-        //}) 
 
     });
 
@@ -93,10 +89,6 @@ function setupListeners( meetings ) {
                 alert("You have succesfully added in the meeting");
             });
         })  
-        //alert( this.closest( '.workshop-item' ).getAttribute( 'data-idx' ) );
-        //item.querySelector( '.add-button' ).addEventListener( 'click', function() {
-        //    await addAttendee( meetings[idx].id );
-        //}) 
 
     });   
 
@@ -131,6 +123,9 @@ function renderMeetings( meetings ) {
 }
 
 async function init() {
+    const user= getLoggedUserName();
+    document.getElementById('current_user').innerHTML= `Hi ${user}`;
+
     const searchCriteria = document.getElementById( 'search-form' );
     //const attendee = document.getElementById('attendee');
 

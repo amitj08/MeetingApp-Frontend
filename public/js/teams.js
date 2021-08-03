@@ -2,19 +2,33 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import axios from 'axios';
 import { API_BASE_URL } from './constants';
-import { getToken, getUser } from './services/auth';
+import { getToken, getLoggedUserName } from './services/auth';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-async function fetchMeetingsByDate( meetingDate ) {
+async function fetchTeams( ) {
     // if you use fetch then use response.json()
     // if you use axios then use response.data
     const response = await axios.get(
         `${API_BASE_URL}/teams`,
         {
+            headers: {
+                Authorization: `${getToken()}`,
+            },
+        },
+    );
+
+    return response.data.data;
+}
+
+async function removeSelf( mid ) {
+    const response = await axios.patch(
+        `${API_BASE_URL}/teams/${mid}`,
+        null, // send data here or null if there is no data to send
+        {
             params: {
-                date: `${meetingDate}`,
+                id: mid,
             },
             headers: {
                 Authorization: `${getToken()}`,
@@ -25,37 +39,89 @@ async function fetchMeetingsByDate( meetingDate ) {
     return response.data.data;
 }
 
+async function addAttendee( mid, attendeeToAdd ) {
+    const response = await axios.patch(
+        `${API_BASE_URL}/teams/${mid}/${attendeeToAdd}`,
+        null, // send data here or null if there is no data to send
+        {
+            params: {
+                id: mid ,
+                email: attendeeToAdd ,
+            },
+            headers: {
+                Authorization: `${getToken()}`,
+            },
+        },
+    );
 
-function renderMeetings( meetings ) {
-    const meetingsListEl = document.getElementById( 'meetings-list' );
-
-    meetings.forEach( ( meeting ) => {
-        meetingsListEl.innerHTML += `
-            <div class="col-12 col-md-4 d-flex mb-3 js-card-workshop-col">
-                <a class="card js-card-workshop text-left text-reset text-decoration-none p-3">
-                    <div class="card-body">
-                        <h4 class="card-title">${meeting.name}</h4>
-                        <p class="card-text">
-                            ${meeting.description}
-                        </p>
-                        <p class="card-text">
-                            ${meeting.date}
-                        </p
-                        
-                    </div>
-                </a>
-            </div>
-        `;
-    } );
+    return response.data.data;
 }
 
+function setupListeners( meetings ) {
+    const items1 = document.querySelectorAll( '.remove-self' );
+
+    items1.forEach( ( item, idx ) => {
+        item.addEventListener( 'click', function(event) {
+            event.preventDefault();
+            removeSelf( meetings[idx]._id ).then(() => {
+                alert("You have succesfully removed from the team");
+            });
+        })  
+
+    });
+
+    const items2 = document.querySelectorAll( '.add-member' );
+
+    items2.forEach( ( item, idx ) => {
+        item.addEventListener( 'click', function(event) {
+            event.preventDefault();
+            const email=document.querySelector('.new-member').value;
+            console.log(email);
+            addAttendee( meetings[idx]._id, email ).then(() => {
+                alert("You have succesfully added in the team");
+            });
+        })  
+
+    });   
+
+}
+
+function renderMeetings( teams ) {
+    const meetingsListEl = document.getElementById( 'search-results' );
+
+    meetingsListEl.innerHTML += teams.map( team => (
+        `<div class="col-12 col-md-4 d-flex mb-3" "meeting-item">
+         <div class="card p-3">
+            <div class="card-body">
+                <h5 class="card-title">${team.name}</h5>
+                <p class="card-text">${team.shortName}</p>
+                <button class="remove-self">Excuse yourself</button>
+                <hr class="my-3" />
+                <p id="meeting_attendees"><strong>Members: </strong>${team.members}</p>
+                <form class="row gy-2 gx-3 align-items-center">
+                    <div class="col-auto">
+                    <input type="text" class="new-member" placeholder="Enter attendee email" value= "" /> 
+                    </div>
+                    <div class="col-auto">
+                        <button class="add-member">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>`
+    )).join( '' );
+    setupListeners( teams );
+}
+
+
 async function init() {
-    const user= getUser();
-    document.getElementById('current_user').innerHTML= `"Hi"+${user}`;
+    const user= getLoggedUserName();
+    document.getElementById('current_user').innerHTML= `Hi ${user}`;
+
     try {
-        const date= new Date();
-        //const meetings = await fetchMeetingsByDate(date);
-        renderMeetings( meeting1 );
+
+        const meetings = await fetchTeams();
+        renderMeetings( meetings );
     } catch ( error ) {
         // eslint-disable-next-line
         alert( error.message );

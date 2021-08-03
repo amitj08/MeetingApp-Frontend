@@ -39,6 +39,7 @@ function login( credentials ) {
 function logout() {
     localStorage.removeItem( TOKEN );
     localStorage.removeItem( EMAIL );
+    localStorage.removeItem( NAME );
 }
 
 /**
@@ -53,10 +54,15 @@ function getUser() {
     return localStorage.getItem( EMAIL );
 }
 
+function getLoggedUserName() {
+    return localStorage.getItem( NAME );
+}
+
 export {
     // eslint-disable-next-line
     login,
     logout,
     getToken,
-    getUser
+    getUser,
+    getLoggedUserName
 };
