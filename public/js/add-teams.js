@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './app';
 import { getToken, getLoggedUserName } from './services/auth';
 
 import axios from 'axios';

@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './app';
 import axios from 'axios';
 import { API_BASE_URL } from './constants';
 
@@ -41,10 +42,18 @@ function init() {
         const email = emailEl.value;
         const password = passwordEl.value;
 
-        //console.log(email, name,password);
-        register( { name, email, password } )
+        console.log(email, name,password);
+        //window.alert("Successfully Added Meeting");
+        const dataToPost= { 
+            "name": name, 
+            "email": email,
+            "password": password,
+         };
+
+        register( dataToPost )
             .then( () => {
-                window.location = '/teams';
+                window.alert("Successfully Registered");
+                window.location = '/register';
             } )
             .catch( ( error ) => {
                 alert( error.message );

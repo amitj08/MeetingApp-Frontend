@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './app';
 import { login } from './services/auth';
 
 function init() {

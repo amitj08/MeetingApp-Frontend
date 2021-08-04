@@ -8,4 +8,11 @@ function setNavbar() {
     });
 }
 
-setNavbar();
+function showBodyOnLoad() {
+    document.addEventListener( 'DOMContentLoaded', function() {
+        document.body.classList.remove( 'hide' );
+    });
+}
+
+showBodyOnLoad();
+//setNavbar();

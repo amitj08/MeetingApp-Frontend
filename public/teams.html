@@ -5,13 +5,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
+        <style>.hide { display: none; }</style>
         <script>
             if( !localStorage.getItem( 'token' ) ) {
                 window.location = '/login';
             }
         </script>
     </head>
-    <body>
+    <body class="hide">
         <!-- b4-navbar-minimal-ul -->
         <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="container">
