@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { API_BASE_URL } from './constants';
 import { getToken , getLoggedUserName} from './services/auth';
+import { formatDate } from './utils/date';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -103,16 +104,16 @@ function renderMeetings( meetings ) {
          <div class="card p-3">
             <div class="card-body">
                 <h5 class="card-title">${meeting.name}</h5>
-                <p class="card-text">${meeting.date}</p>
-                <button class="remove-self">Excuse yourself</button>
+                <p class="card-text">${formatDate(meeting.date)}</p>
+                <button class="remove-self btn btn-danger">Excuse yourself</button>
                 <hr class="my-3" />
-                <p id="meeting_attendees"><strong>Members: </strong>${meeting.attendees}</p>
+                <p id="meeting_attendees"><strong>Members:</strong> ${meeting.attendees.join( ', ' )}</p>
                 <form class="row gy-2 gx-3 align-items-center">
                     <div class="col-auto">
                     <input type="text" class="new-member" placeholder="Enter attendee email" value= "" /> 
                     </div>
                     <div class="col-auto">
-                        <button class="add-member">Add</button>
+                        <button class="add-member btn btn-secondary">Add</button>
                     </div>
                 </form>
             </div>

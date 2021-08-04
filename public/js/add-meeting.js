@@ -87,6 +87,7 @@ function init() {
         register( dataToPost )
             .then( () => {
                 window.alert("Successfully Added Meeting");
+                window.location = '/add-meeting.html';
             } )
             .catch( ( error ) => {
                 alert( error.message );

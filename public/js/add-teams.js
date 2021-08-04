@@ -67,6 +67,7 @@ function init() {
         register( dataToPost )
             .then( () => {
                 window.alert("Successfully Added Team");
+                window.location = '/add-teams';
             } )
             .catch( ( error ) => {
                 alert( error.message );

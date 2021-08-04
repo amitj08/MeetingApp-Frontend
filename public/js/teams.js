@@ -65,6 +65,7 @@ function setupListeners( meetings ) {
             event.preventDefault();
             removeSelf( meetings[idx]._id ).then(() => {
                 alert("You have succesfully removed from the team");
+                window.location = '/teams';
             });
         })  
 
@@ -79,6 +80,7 @@ function setupListeners( meetings ) {
             console.log(email);
             addAttendee( meetings[idx]._id, email ).then(() => {
                 alert("You have succesfully added in the team");
+                window.location = '/teams';
             });
         })  
 
@@ -95,15 +97,15 @@ function renderMeetings( teams ) {
             <div class="card-body">
                 <h5 class="card-title">${team.name}</h5>
                 <p class="card-text">${team.shortName}</p>
-                <button class="remove-self">Excuse yourself</button>
+                <button class="remove-self btn btn-danger">Excuse yourself</button>
                 <hr class="my-3" />
-                <p id="meeting_attendees"><strong>Members: </strong>${team.members}</p>
+                <p id="meeting_attendees"><strong>Members: </strong>${team.members.join( ', ' )}</p>
                 <form class="row gy-2 gx-3 align-items-center">
                     <div class="col-auto">
                     <input type="text" class="new-member" placeholder="Enter attendee email" value= "" /> 
                     </div>
                     <div class="col-auto">
-                        <button class="add-member">Add</button>
+                        <button class="add-member  btn btn-secondary">Add</button>
                     </div>
                 </form>
             </div>
