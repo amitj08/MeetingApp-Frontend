@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './app';
+//import { showBodyOnLoad } from './app';
 import { login } from './services/auth';
 
 function init() {
@@ -29,4 +29,5 @@ function init() {
     });
 }
 
+//showBodyOnLoad();
 init();

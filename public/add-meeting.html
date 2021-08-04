@@ -70,27 +70,27 @@
                     <form action="/meetings" method="get" id="add-meeting-form">
                         <div class="form-group mb-3">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name"  value= "" /> 
+                            <input type="text" class="form-control" id="name"  value= "" required/> 
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="date">Date</label>
-                            <input type="date" class="form-control" id="date"  value= "" /> 
+                            <input type="date" class="form-control" id="date"  value= "" required/> 
                         </div>
                         
                         <div class="form-group mb-3 ">
                             <label class="mb-1" for="formGroupStartTime">Start Time </label>
-                            <input class="form-control" type="time" name="meeting-start-time" id="meeting_start_time">
+                            <input class="form-control" type="time" name="meeting-start-time" id="meeting_start_time" required>
                         </div>
 
                         <div class="form-group mb-3 ">
                             <label class="mb-1" for="formGroupEndTime">End Time </label>
-                            <input class="form-control" type="time" name="meeting-end-time" id="meeting_end_time">
+                            <input class="form-control" type="time" name="meeting-end-time" id="meeting_end_time" required>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="description" >Description</label>
-                            <textarea class="form-control" name="description" id="description" value=""></textarea>
+                            <textarea class="form-control" name="description" id="description" value="" placeholder="Must be minimum 50 character long" required></textarea>
                         </div>
 
                         <div class="form-group mb-3">

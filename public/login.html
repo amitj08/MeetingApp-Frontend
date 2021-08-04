@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Welcome to Meeting App</title>
-        <style>.hide { display: none; }</style>
+        <!--<style>.hide { display: none; }</style> -->
     </head>
     <body class="hide">
         <main class="container my-3">
@@ -28,12 +28,12 @@
                     <form class="bg-info p-3 mt-2 rounded" method="get" id="login-form">
                         <div class="form-group mb-3">
                             <label for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="email" />
+                            <input class="form-control" type="email" id="email" name="email" required/>
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="password" >Password</label>
-                            <input class="form-control" type="password" id="password" name="password" />
+                            <input class="form-control" type="password" id="password" name="password" required/>
                         </div>
                         
                         <button type="submit"  class="btn btn-primary login-btn" id="login">Login</button>

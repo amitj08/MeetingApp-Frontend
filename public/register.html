@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Meeting App</title>
-        <style>.hide { display: none; }</style>
+        <!--<style>.hide { display: none; }</style> -->
     </head>
     <body class="hide">
         <main class="container my-3">
@@ -28,28 +28,39 @@
                     <form method="post" id="register-form">
                         <div class="form-group mb-3">
                             <label for="Name">Name</label>
-                            <input class="form-control" type="text" id="name" name="name" />
+                            <input class="form-control" type="text" id="name" name="name" required />
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="email" />
+                            <input class="form-control" type="email" id="email" name="email" required/>
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="password" >Password</label>
-                            <input class="form-control" type="password" name="password" id="password" />
+                            <input class="form-control" type="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}" name="password" id="password" />
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="password" >Confirm Password</label>
-                            <input class="form-control" type="password" name="cnfirm-password" id="pwd_confirm" />
+                            <input class="form-control" type="password" name="confirm-password" id="confirm-password" />
                         </div>
                         
                         <button type="submit"  class="btn btn-primary signup-btn" id="register">Register</button>
                     </form>
                 </form>
 
+            </section>
+
+            <section class="float-center">
+                <div class="text-primary display-6">Rules for Passowrd</div>
+                <ul>
+                    <li>Must be 8 character long</li>
+                    <li>Must contain an uppercase letter</li>
+                    <li>Must contain a lowercase letter</li>
+                    <li>Must contain a number</li>
+                    <li>Must contain a special character</li>
+                </ul>
             </section>
             
 

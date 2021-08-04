@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app';
 import axios from 'axios';
 import { API_BASE_URL } from './constants';
+import { formatDate } from './utils/date';
 import { getLoggedUserName, getToken, getUser } from './services/auth';
 
 import 'core-js/stable';
@@ -53,11 +54,11 @@ async function fetchMeetingsByDate( meetingDate ) {
 
 function renderMeetings( meetings ) {
     const meetingsListEl = document.getElementById( 'meetings-list' );
-
+    meetingsListEl.innerHTML="";
     meetings.forEach( ( meeting ) => {
         meetingsListEl.innerHTML += 
             `<div class="col-12 col-md-4 d-flex mb-3 js-card-meeting-col">
-                <a class="card js-card-workshop text-left text-reset text-decoration-none p-3">
+                <div class="card js-card-meeting text-left text-reset text-decoration-none p-3">
                     <div class="card-body">
                         <h4 class="card-title">${meeting.name}</h4>
                         <p class="card-text  text-info">
@@ -69,18 +70,17 @@ function renderMeetings( meetings ) {
                         </p
                         
                     </div>
-                </a>
+                </div>
             </div>`
     } );
 }
 
-
-async function init() {
+async function selectedDateCalDisply() {
     const user= getLoggedUserName();
     document.getElementById('current_user').innerHTML= `Welcome <b>${user}</b>`;
     
     const findMeeting = document.getElementById( 'search-form' );
-
+   
     /* eslint-disable-next-line */
     findMeeting.addEventListener( 'submit', async function( event ) {
         // this -> loginForm
@@ -90,7 +90,7 @@ async function init() {
 
         const dateEl = document.querySelector( '#cal-date' );
         const date= dateEl.value;
-
+        document.getElementById('day-name').innerHTML=formatDate(date);
         console.log("Test");
         console.log(date);
 
@@ -98,6 +98,7 @@ async function init() {
             //const date= new Date();
             //const date= new Date("2020-09-19");
             const meetings = await fetchMeetingsByDate(date);
+            ///location.reload();
             renderMeetings( meetings );
         } catch ( error ) {
             // eslint-disable-next-line
@@ -106,6 +107,26 @@ async function init() {
     })
 }
  
+
+async function init() { 
+    var today = new Date();
+    document.getElementById('day-name').innerHTML=formatDate(today);
+    today=today.toISOString().slice(0,10);
+    console.log(today);
+
+    try {
+        //const date= new Date();
+        //const date= new Date("2020-09-19");
+        const meetings = await fetchMeetingsByDate(today);
+        ///location.reload();
+        renderMeetings( meetings );
+    } catch ( error ) {
+        // eslint-disable-next-line
+        alert( error.message );
+    } 
+    selectedDateCalDisply();
+}
+
 
 init();
 

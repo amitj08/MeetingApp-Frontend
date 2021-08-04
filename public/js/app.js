@@ -15,4 +15,10 @@ function showBodyOnLoad() {
 }
 
 showBodyOnLoad();
-//setNavbar();
+setNavbar();
+
+/*
+export {
+    showBodyOnLoad
+};
+*/

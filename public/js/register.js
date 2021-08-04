@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './app';
+//import './app';
 import axios from 'axios';
 import { API_BASE_URL } from './constants';
 
@@ -37,13 +37,20 @@ function init() {
         const emailEl = document.querySelector( '#email' );
         const nameEl = document.querySelector( '#name' );
         const passwordEl = document.querySelector( '#password' );
+        const cnfpasswordEl = document.querySelector( '#confirm-password' );
 
         const name = nameEl.value;
         const email = emailEl.value;
         const password = passwordEl.value;
+        const confirmPassword = cnfpasswordEl.value;
+
+        if(password !== confirmPassword){
+            window.alert("Password and confirm password must be same");
+            window.location = '/register';
+        }
 
         console.log(email, name,password);
-        //window.alert("Successfully Added Meeting");
+        
         const dataToPost= { 
             "name": name, 
             "email": email,

@@ -36,9 +36,6 @@ async function removeSelf( mid ) {
         `${API_BASE_URL}/meetings/${mid}`,
         null, // send data here or null if there is no data to send
         {
-            params: {
-                id: mid,
-            },
             headers: {
                 Authorization: `${getToken()}`,
             },
@@ -53,10 +50,7 @@ async function addAttendee( mid, attendeeToAdd ) {
         `${API_BASE_URL}/meetings/${mid}/${attendeeToAdd}`,
         null, // send data here or null if there is no data to send
         {
-            params: {
-                id: mid ,
-                email: attendeeToAdd ,
-            },
+
             headers: {
                 Authorization: `${getToken()}`,
             },
@@ -67,18 +61,7 @@ async function addAttendee( mid, attendeeToAdd ) {
 }
 
 function setupListeners( meetings ) {
-    const items1 = document.querySelectorAll( '.remove-self' );
-
-    items1.forEach( ( item, idx ) => {
-        item.addEventListener( 'click', function(event) {
-            event.preventDefault();
-            removeSelf( meetings[idx]._id ).then(() => {
-                alert("You have succesfully removed from the meeting");
-            });
-        })  
-
-    });
-
+    
     const items2 = document.querySelectorAll( '.add-member' );
 
     items2.forEach( ( item, idx ) => {
@@ -93,12 +76,24 @@ function setupListeners( meetings ) {
 
     });   
 
+    const items1 = document.querySelectorAll( '.remove-self' );
+
+    items1.forEach( ( item, idx ) => {
+        item.addEventListener( 'click', function(event) {
+            event.preventDefault();
+            removeSelf( meetings[idx]._id ).then(() => {
+                alert("You have succesfully removed from the meeting");
+            });
+        })  
+
+    });
+
 }
 
 
 function renderMeetings( meetings ) {
     const meetingsListEl = document.getElementById( 'search-results' );
-
+    meetingsListEl.innerHTML="";
     meetingsListEl.innerHTML += meetings.map( meeting => (
         `<div class="col-12 col-md-4 d-flex mb-3" "meeting-item">
          <div class="card p-3">
@@ -108,14 +103,14 @@ function renderMeetings( meetings ) {
                 <button class="remove-self btn btn-danger">Excuse yourself</button>
                 <hr class="my-3" />
                 <p id="meeting_attendees"><strong>Members:</strong> ${meeting.attendees.join( ', ' )}</p>
-                <form class="row gy-2 gx-3 align-items-center">
+                <div class="row gy-2 gx-3 align-items-center">
                     <div class="col-auto">
                     <input type="text" class="new-member" placeholder="Enter attendee email" value= "" /> 
                     </div>
                     <div class="col-auto">
                         <button class="add-member btn btn-secondary">Add</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
         </div>`
