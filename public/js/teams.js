@@ -122,8 +122,8 @@ async function init() {
 
     try {
 
-        const meetings = await fetchTeams();
-        renderMeetings( meetings );
+        const teams = await fetchTeams();
+        renderMeetings( teams );
     } catch ( error ) {
         // eslint-disable-next-line
         alert( error.message );

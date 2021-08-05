@@ -12,9 +12,6 @@ async function fetchMeetingsByFilter( {period,search} ) {
     // if you use fetch then use response.json()
     // if you use axios then use response.data
 
-    //const period = criteria.period;
-    //const search = criteria.search;
-
     const response = await axios.get(
         `${API_BASE_URL}/meetings`,
         {
