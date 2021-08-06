@@ -1,10 +1,10 @@
 # MeetingApp-Frontend
 
 ##To install the dependencies:
-npm install
+ npm install
 
 ##To build the project:
-npm run build
+ npm run build
 
 ##To start the client:
-npm start
+ npm start
